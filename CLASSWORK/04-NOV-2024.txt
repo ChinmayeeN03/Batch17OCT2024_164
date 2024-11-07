@@ -1,0 +1,616 @@
+Managing input and output operations
+
+Reading a character
+
+-reading a single charater can be done using the function getchar() and also scanf()
+ch = getchar();
+
+i/o statements - to perform basic i/o functions c provide library funtcions called stdio.h
+ex: scanf(), printf(), getchar(), putchar(), getch(), gets(), puts() etc
+
+Formatted i/o
+Unformatted i/o
+
+1) Formatted I/O Statements - this enables the user to specify the type of data and the way in which it should be read or written out
+EX : scanf(), printf()
+
+2) Unformatted I/O Statements - this do not specify the type of data and the way in which it should be read or written out
+EX : getchar(), putchar(), getch(), gets(), puts()
+
+Scanf():-
+Syntax
+      scanf("Control String", address_list);
+
+
+where,
+	"control string" is a sequence of one or more character groups. (specifies the type of values)
+	"address list" are address of memory locations where the values of input variable should be stored.
+
+%c - single character
+%d - decimal integer
+%f - floating point value
+%u - unsigned value
+
+Integer input
+		Ex : num = 386;
+			scanf("%3d",&num);
+
+where, 3 is the field width of input number, other 4 and 5 are in temporary buffer wherein th erest of the place will be filled with 0.
+
+Note:No space or any other character is used after te last character group.
+Ex: scanf("%d%d%d ",p,q,r)
+
+#include <stdio.h>
+
+int main()
+{
+	int i;
+	float f;
+	char ch;
+	char str1[20];
+	double d;
+
+	printf("\nEnter the proper values\n");
+	printf("\nEnter integer value: \n");
+	scanf("%d",&i);
+
+	printf("\nInteger value: \n");
+	printf("%d", i);
+
+	return 0;
+
+}
+
+printf - used for deferencing the value
+
+Checking in different ways
+
+ #include <stdio.h>
+  2
+  3 int main()
+  4 {
+  5    int i;
+  6    float f;
+  7    char ch;
+  8    char str1[20];
+  9    double d;
+ 10
+ 11    printf("\nEnter the proper values\n");
+ 12    printf("\nEnter integer value: ");
+ 13    scanf("%3d",&i);
+ 14
+ 15    printf("\nInteger value: %05d\n",i);
+ 16
+ 17    return 0;
+ 18
+ 19 }
+
+if taken as above 
+input - 12345
+output - 00123 (4 and 5 are in buffer)
+
+if 5 is given rather than 05 then
+i/p - 123456
+o/p -    123   (spaces are occupied)
+
+if only d is given rather than 3d then 
+i/p - 123456
+o/p - 123456  (everything will be printed)
+
+Note : While scanning the string we should not specify the address of operator
+
+ASCII value of enter key is 10
+
+Note: for single character value - it checks in the temporary buffer first then if nothing available then comes to give user input.
+	To avoid this - fflush stdin( it is not working in linux environment)
+	So we can avoid by clearing of the buffer ie we need to add scanf(" ") where a space is used 
+	it does not work for float because it only works for single character
+
+Assignment : how can I avoid numeric constants
+
+just a recap to push the code 
+
+git add.
+git commit -m "updated"
+git push -u origin main
+
+Scan the employee records and print them in the particular format
+
+name id gender address phone number salary and designation
+print in the format 
+	SlNo | ID | NAME | GENDER | ADDRESS | PHNO | SALARY | DESG
+	001  |101 |Chinnu|N       |Kar      |333333|93288976| JD
+
+
+ 1 /*
+  2 Desc: assignment 01
+  3    scan and print the employee records in the
+  4    following format
+  5    SlNo | ID | NAME | GENDER | ADDRESS | PHNO | SALARY | DESG
+  6    001    | 101|Bhima | M      | Kar     | 8888 | 10000  | SE
+  7
+  8 Author: BT
+  9 DOC: 04-11-2024
+ 10 Version: 0.1v
+ 11
+ 12 */
+ 13
+ 14 #include <stdio.h>
+ 15
+ 16 int main()
+ 17 {
+ 18
+ 19    int id;
+ 20    int phno;
+ 21    float salary;
+ 22    char name[20];
+ 23    char address[20];
+ 24    char desg[20];
+ 25    char gender;
+ 26
+ 27
+ 28    printf("\nEnter the Employee details\n");
+ 29    printf("\nID: ");
+ 30    scanf("%d",&id);
+ 31    printf("\nName: ");
+ 32    scanf("%s",name);
+ 33    printf("\nGender: ");
+ 34    scanf(" ");
+ 35    scanf("%c",&gender);
+ 36    printf("\nPhNo: ");
+ 37    scanf("%d",&phno);
+ 38    printf("\nAddress: ");
+ 39    scanf("%s",address);
+ 40    printf("\nSalary: ");
+ 41    scanf("%f",&salary);
+ 42    printf("\nDesgination: ");
+ 43    scanf("%s",desg);
+
+
+	printf("\n%-20s | %20s | NAME | GENDER | ADDRESS | PHNO |SALARY | DESG");
+	printf("\n%03d | %d | %s | %c | %s | %d | %f | %s \n"x, 1, ID, NAME, GENDER, ADDRESS, PHNO, SALARY, DESG);
+	printf("\n\n");
+
+
+-- INSERT --
+
+Note : Space or new line character is end of string (anything given after space will be in buffer)  
+	^ - is used to find until a patten has matched or new line is found 
+
+#include <stdio.h>
+
+int main()
+{
+	char name[20];
+	char temp[20];
+	scanf("%[^\n]s",name);
+	printf("\nName: %s,name);
+	scanf("%s", temp);
+	printf(*"\nTemp: %s,temp);
+	printf("\n\n");
+	return 0;
+}
+
+Output = Chinnmayee Murthy
+
+if it is out of size - stack smashing detected is the error we get even though it gives proper output
+
+	this is because to clean up the memory permission is not there as it is there in java(garbage collector)
+
+
+Address of i: 1440203472
+
+Address of f: 1440203476
+
+Address of ch: 1440203471
+
+Address of str1: 1440203488
+
+Address of d: 1440203480
+
+This is called as base address of any variable(starting address)
+
+
+ #include <stdio.h>
+  2
+  3 int main()
+  4 {
+  5    int i, j;
+  6
+  7    scanf("%d%d",&i,&j);
+  8    printf("\ni=%d\tj=%d",i,j);
+  9
+ 10    printf("\n\n");
+ 11
+ 12    return 0;
+ 13 }
+~
+input can be given in same line or different line
+Output - i=20 j=30
+
+Should never have spaces in scanf and also \t and \n need to be avoided(unprintable characters (space will specify that you have an another input) 
+- "%d %d" is ok but "%d%d " is not ok also " %d%d" is ok only when there is integer
+
+
+-itoa is used to convert integer to alpha and atoi for viseversa -  to use these we need to have stdlib
+-Converting an integer to string can be done using buffer and sprintf
+
+
+  1 #include <stdio.h>
+  2 #include <stdlib.h>
+  3
+  4 int main()
+  5 {
+  6    int i,j;
+  7    char w[5] = "2002";
+  8    char buff[1024];
+  9    char buff1[1024];
+ 10
+ 11    int res=0;
+ 12    scanf("%d%d",&i,&j);
+ 13    printf("\ni=%d\tj=%d",i,j);
+ 14    sprintf(buff,"\ni=%d\tj=%d",i,j);
+ 15    printf("\nBuffer value: %s",buff);
+ 16    sprintf(buff1,"%d",i);
+ 17    printf("\nBuff1: %s",buff1);
+ 18    res = atoi("2002")+2;
+ 19    printf("\nResult = %d",res);
+ 20    printf("\n\n");
+ 21    return 0;
+ 22 }
+~
+
+ 1 #include <stdio.h>
+  2
+  3 int main()
+  4 {
+  5    int i,j,k;
+  6
+  7    char buff[100] = "10 20 30";
+  8    sscanf(buff,"%d %d %d",&i,&j,&k);
+  9
+ 10    printf("\ni=%d\tj=%d\tk=%d\n",i,j,k);
+ 11    return 0;
+ 12 }
+~
+i=10 j=20 k=30
+
+
+2)Unformatted
+
+ 1 /*
+  2 unformatted i/o
+  3
+  4 getc, putc ==>read or write single character -> stream
+  5 getchar, putchar ==> read/write single char => std i/o
+  6
+  7 gets, puts ==> read/write for a string -> stream
+  8
+  9 getch() ==> DOS platform ==> not echo read char to the screen
+ 10
+ 11 */
+ 12
+ 13 #include <stdio.h>
+ 14
+ 15 int main()
+ 16 {
+ 17    char ch;
+ 18    printf("\nEnter the character: ");
+ 19    ch = getchar();
+ 20    printf("\nread char: ");
+ 21    putchar(ch);
+ 22
+ 23    printf("\n\n");
+ 24    return 0;
+ 25 }
+
+
+Output: C when Cis given as o/p
+
+
+
+
+#include <stdio.h>
+ 14
+ 15 int main()
+ 16 {
+ 17    char ch;
+ 18    printf("\nEnter the character: ");
+ 19    ch = getchar();
+ 20    printf("\nread char: ");
+ 21    putchar(ch);
+ 22
+ 23    putchar('A');
+ 24    putchar(65);
+ 25
+ 26    printf("\n\n");
+ 27    return 0;
+ 28 }
+
+
+Output : CAA
+
+These o/p cannot be recieved in different lines
+ --getchar will help in std io but getc will help in strings
+
+
+ #include <stdio.h>
+ 14
+ 15 int main()
+ 16 {
+ 17    char ch;
+ 18    printf("\nEnter the character: ");
+ 27
+ 28    ch = fgetc(stdin);
+ 29
+ 30    printf("\nRead char: ");
+ 31    putc(ch, stdout);
+ 32    printf("\n\n");
+ 33    return 0;
+ 34 }
+~
+output - reads the character given
+
+note - when menu based items are used it is bettre to use getc rather than scanf
+
+gets -- can assign and store it in the buffer
+fgets should be specified with how many char and from where to be read-- it also stores one extra line
+These both will read until the new line
+--scanf reads until blank space and new line...to overcome this we use pattern matching
+
+
+#include <stdio.h>
+  2
+  3 int main()
+  4 {
+  5    char empName[20];
+  6
+  7    fgets(empName,5,stdin);
+  8    puts(empName);
+  9
+ 10 /*
+ 11    if(strcmp(gets(buff),"quit")==0)
+ 12    {
+ 13       quit code
+ 14    }
+ 15    else{
+ 16       other than quit code
+ 17    }
+ 18 */
+ 19
+ 20    return 0;
+ 21 }
+ 22
+
+
+I/p -Chinmayee
+O/p -Chin
+
+
+
+if 5 is replaced by 30 then prints whole output within range even though space is there
+
+
+ #include <stdio.h>
+  2
+  3 int main()
+  4 {
+  5    char empName[20];
+  6
+  7    fgets(empName,30,stdin);
+  8    puts(empName);
+  9
+ 10 /*
+ 11    if(strcmp(gets(buff),"quit")==0)
+ 12    {
+ 13       quit code
+ 14    }
+ 15    else{
+ 16       other than quit code
+ 17    }
+ 18 */
+ 19
+ 20    if(strcmp(empName,"chinmayee\n")==0)
+ 21       printf("\nEqual");
+ 22    else
+ 23       printf("\nNot equal");
+ 24
+ 25    return 0;
+ 26 }
+ 27
+
+
+o/p - equal
+
+if \n is not given after chinmayee then
+
+o/p - not equal
+
+
+
+ #include <stdio.h>
+  2
+  3 int main()
+  4 {
+  5    char str1[20];
+  6    char ch;
+  7
+  8    char buff[1024] = {'\0',};
+  9
+ 10    puts("\nSlno | Name | ID | \n");
+ 11    strcat(buff," | ");
+ 12    strcat(buff,"Chinmayee");
+ 13    strcat(buff,"Murthy");
+ 14    strcat(buff," | ");
+ 15    puts(buff);
+ 16
+ 17 }
+
+
+O/p - | ChinmayeeMurthy |
+
+
+ #include <stdio.h>
+  2 #include <string.h>
+  3
+  4 int main()
+  5 {
+  6    char str1[20];
+  7    char ch;
+  8
+  9    char buff[1024] = {'\0',};
+ 10
+ 11    puts("\nSlno | ID | Name | \n");
+ 12    strcat(buff, "001 | ");
+ 13    strcat(buff,str1);
+ 14    strcat(buff," | ");
+ 15    strcat(buff,"Chinmayee");
+ 16    strcat(buff,"Murthy");
+ 17    strcat(buff," | ");
+ 18    puts(buff);
+ 19
+ 20 }
+
+o/p--
+
+Slno | ID | Name |
+
+001 |  | ChinmayeeMurthy |
+
+
+ #include <stdio.h>
+  2 #include <string.h>
+  3
+  4 int main()
+  5 {
+  6    char str1[20];
+  7    char ch;
+  8
+  9    char buff[1024] = {'\0',};
+ 10    fgets(str1,3,stdin);
+ 11    puts("\nSlno | ID | Name |\n");
+ 12    strcat(buff, "001 | ");
+ 13    strcat(buff,str1);
+ 14    strcat(buff," | ");
+ 15    strcat(buff,"Chinmayee");
+ 16    strcat(buff,"Murthy");
+ 17    strcat(buff," |");
+ 18    puts(buff);
+ 19
+ 20 }
+ 21
+
+
+o/p
+
+3
+
+Slno | ID | Name |
+
+001 | 3
+ | ChinmayeeMurthy |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+DECISION MAKING AND BRANCHING
+
+--to test multiple conditions
+
+-if
+-if else
+-nested  if else
+-switch statement
+
+
+---if is used like if you are above 18 then you can vte and you are Indian citizen (2 things)
+-if it is single statement then no need of braces
+if(cond)
+ statement
+
+
+
+ 1 #include <stdio.h>
+  2
+  3 int main()
+  4 {
+  5
+  6    int age;
+  7    scanf("%d",&age);
+  8
+  9    if(age>=18)
+ 10    {
+ 11       printf("\nYou are eligible to vote");
+ 12    }
+ 13    printf("\nIndian Citizen\n");
+ 14
+ 15    return 0;
+ 16
+ 17 }
+
+o/p
+
+
+user50@trainux01:~/day07$ gcc p8.c
+user50@trainux01:~/day07$ ./a.out
+
+12
+
+Indian Citizen
+user50@trainux01:~/day07$ ./a.out
+21
+
+You are eligible to vote
+Indian Citizen
+
+
+----nested if else
+
+if(cond1)
+{
+	if(cond2)
+	{
+
+	}
+	else
+	{
+
+	}
+}
+else
+{
+	if(cond3)
+	{
+	
+	}
+	else
+	{
+
+	}
+}
+
+
+
+
+
+
+
+
+                                                                   

@@ -1,0 +1,428 @@
+Assignment: convert for loop to exit controlled loop
+
+ #include <stdio.h>
+  2
+  3 int main()
+  4 {
+  5
+  6    int i = 0;
+  7    for(;;)
+  8    {
+  9       printf("\nHelloWorld");
+ 10       i++;
+ 11       if(i>5)
+ 12       {
+ 13          break;
+ 14       }
+ 15    }
+ 16 }
+~
+o/p
+
+user50@trainux01:~/practice/try/day09$ gcc forexit.c
+user50@trainux01:~/practice/try/day09$ ./a.out
+
+HelloWorld
+HelloWorld
+HelloWorld
+HelloWorld
+HelloWorld
+
+
+ 1    itr = 1;
+  2 LoopLabel: // not an executable statement
+  3    printf("\nitr=%d",itr);
+  4    itr++;
+  5    if(itr>5)
+  6       goto ExitLabel;
+  7    else
+  8       goto LoopLabel;
+  9 ExitLabel:
+ 10    printf("\n\n");
+ 11    return 0;
+ 12 }
+ 13
+Refer to the code in github pushed by sir if any confusion
+
+
+
+ARRAYS
+
+-for particular task
+-stored in consequetive manner
+--index avlue is also called as subscript value
+--when assigning a value do it to the address
+--dereferencing must be done while printing.
+--Declaration and allocation memory will be bottom to top
+
+int a=10;
+int b[2]={1,3};
+int c=20;
+
+pf("%d%d,b[0],b[1]);
+pf("%d%d,b[2],b[-1]);
+
+
+o/p
+c - 2000 -20
+b[0] - 2002 -1
+b[1] - 2004 - 3
+a - 2006 - 20
+
+NOTE : BaseAddress + (IndexValue * size Of datatype)
+
+For storing
+
+if size of datatype is different -- we get garbage value
+
+--size depends on datatype like 2 for int, 4 for float
+--index must always be an integer
+
+ 1 //Declaration part
+  2
+  3 datatype   array_name[size];
+  4 int arr[3];
+  5 float arr1[3];
+  6 struct Emp
+  7 {
+  8    int id;
+  9    char name[20];
+ 10 {;
+ 11
+ 12 struct Emp e[10];
+ 13
+ 14 //Access elements of arr to store or eveluate
+ 15
+ 16 arrName[indexValue] = value;
+ 17 ==> index value from 0 to size-1
+ 18
+ 19 arr[2] = 10;
+
+
+1) Static array
+2) Dynamic array
+3) Stretchabale array
+4) Mutable array
+
+--Static array : size of an array is known before to the compilation time (will be in stack memory)
+Ex : int arr[5];
+
+--Dynamic array : size of an array is known at run time(will be in heap memory)
+Ex : malloc, calloc, realloc --- these are defined in stdlib.h
+
+--Stretchable array : renaming dynamic array for purpose to decrease or increase the size of array
+Ex : same as dynamic
+
+--Mutable array : size of an array is known(alloted) at the time of linking before execution 
+
+
+IF git pull is not working - git fetch --all.
+				 - git reset --hard origin/main
+It does not making any changes in global repository but at this time our local repository contents may be missed
+
+
+
+Write a program to store odd numbers in an array between n and m.
+
+
+arr[2] = 20;
+
+int a[2] = {1,2};
+
+dt arrName [Row][Column];
+
+int a[2][3] = {1,2,3}{4,5,6};
+
+int a1[2][3] = {1,2,3,4,5,6}; --- 1 2 3
+					 4 5 6
+
+2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011
+    1		 2		3	4		5	6         
+
+
+
+//2-D array
+#include <stdio.h>
+
+#define Row 2
+#define Col 3
+
+int main() {
+    int a[Row][Col] = {{1,2,3},{4,5,6}};
+    printf("\n%d",a[0][2]);
+    printf("\n\n");
+
+    return 0;
+}
+
+
+
+
+//2-D array
+#include <stdio.h>
+
+#define Row 2
+#define Col 3
+
+int main() {
+    int a[Row][Col] = {{1,2,3},{4,5,6}};
+    int a1[Row][Col] = {1,2,3,4,5,6};
+    
+    int riv,civ;
+    
+    printf("\n%d",a1[0][2]);
+    
+    for(riv=0;riv<Row;riv++)
+    {
+        for(civ=0;civ<Col;civ++)
+        {
+            scanf("%d",&a1[Row][Col]);
+        }
+    }
+     for(riv=0;riv<Row;riv++)
+    {
+        for(civ=0;civ<Col;civ++)
+        {
+            printf("%d",&a1[Row][Col]);
+            
+            printf("\n");
+        }
+    }
+    printf("\n\n");
+
+    return 0;
+}
+
+
+
+------check
+
+//2-D array
+#include <stdio.h>
+
+#define CAP 100
+
+int main() {
+    
+    int a[CAP],i;
+    int mid,countOdd,countEven
+    int m=51,n=103;
+    
+    mid = (n+m)/2;
+    printf("\nmid=%d",mid);
+    
+    for(i=m,countOdd=0,countEven=mid;i<n;i++)
+    {
+        if(i%2 != 0)
+        {
+            a[countOdd] = i;
+            countOdd++;
+        }
+        else
+        {
+            a[countEven] = i;
+            countEven++;
+        }
+    }
+   
+   for(i=0;i<countEven;i++)
+        printf("\n%d",&countEven)
+    printf("\n\n");
+
+    return 0;
+}
+
+
+
+
+//2-D array
+#include <stdio.h>
+
+#define CAP 10
+
+int main() {
+    
+    int i=0,t,mid;
+    int a[CAP]={1,2,3,4,5,6,7,8,9,10};
+    
+
+    for(i=0;i<CAP;i++)
+        printf(" %d ",a[i]);
+   
+   printf("\nAfter reverse of array");
+   for(i=0,mid=CAP/2;i<mid;i++)
+   {
+       t=a[i];
+       a[i]=a[(CAP-1)-i];
+       a[(CAP-1)-i]=t;
+   }
+   for(i=0;i<CAP;i++)
+   {
+       printf("\n")
+   }
+      
+    printf("\n\n");
+
+    return 0;
+}
+
+
+
+FUNCTIONS
+
+--to perform specific task
+
+
+1) Standard library functions --- printf,sqrt,abs,pow
+2) User defined functions --- user is defining his/her own task to be performed
+
+ 
+rdt fName(input args)
+{
+	sts;
+	return rdt;
+}
+
+
+int add(int val1, int val2)
+{
+	int result = val1+val2;
+
+	return result;
+}
+
+
+function prototyping is necessary--- are to be written in header file (declaration)
+		function definition must be written in main.c file
+
+
+when angular braces are used near include <isPrime.h> ----  -i must be used during compilation or else we can write "isPrime.h"
+
+gcc -o isPrimeApp -I./ main.c isPrime.c
+
+
+
+
+
+#ifndef ISPRIME_H //for protection
+#define ISPRIME_H
+
+#define True 1
+#define False 0
+
+int isPrime(int);
+
+#endif
+/*
+next part of code
+*/
+
+#include <isPrime.h>
+
+int isPrime(int val)
+{
+    int it,flag=0;
+    if(val <= 1)
+        return false;
+        
+    for(it=2;it<=val/2;it++)
+    {
+        if(val%it == 0)
+        {
+            flag = 1;
+            break;
+        }
+    }
+    if(flag == 1)
+    {
+        return False;
+    }
+    else
+    {
+        return True;
+    }
+
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <isPrime.h>
+
+int main()
+{
+    int num = 17;
+    if(isPrime(num)==True)
+        printf("\n%d is a prime number",num);
+    else
+        printf("\n%d is not a prime number",num);
+      
+printf("\n\n");
+return 0;
+        
+}
+
+
+
+
+
+
+
+-----In array we can specify the index before the subscript as well
+
+
+
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+
+
+//functions with input args and no return dt
+
+void changeName(char *);
+
+int main()
+{
+    char Name[20]="Bhima";
+    disp();
+    printf("\nAddition: %d\n",add(10,30));
+    printf("\nName before change: %s",Name);
+    changeName(Name);
+    printf(:\nName after change: %s",Name);
+    
+    printf("\n\n");
+    return EXIT_SUCCESS;
+}
+
+//functions without input args without return dt
+void disp()
+{
+    int i;
+    for(i=0;i<30;i++)
+        printf("=");
+    printf("\n=====Welcome=====");
+    for(i=0;i<30;i++)
+        
+}
+//functions with input args and return dt
+int add(int v1,int v2);
+{
+    return v1+v2;
+}
+
+
+
+
+int changeValue(int[],int);
+
+here int for size and int[] for passing of array value
+
+
+POINTERS
+
+---they are as similar as arrays
+--capacity also must be passed while passing the function
+--size of pointer is 4
+
+ 

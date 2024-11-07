@@ -1,0 +1,158 @@
+C Language
+
+
+- 3 years 8 months to develop this language.
+- faster because no need of virtual machine and even the size is low
+- highly portable (zipping with .o file and sending bin, source file)
+
+
+Structure 
+
+
+Documentation Section - are in the commands(gives information about when it is created) 
+/*
+
+Description:
+modules add,sub
+
+int add(int val1, int val2): add is doing addition of val1 with val2 and return the result to the called(main())
+
+Author:Chinmayee
+DOC/DOM:29-10-2024
+Version:0.1v (All new files will be of this version)
+1.0 - stable versions => basing of the project (no bugs... totally ready for use)
+ 
+*/
+Note: File cannot be edited until it is pulled once it is pushed to the repository.
+      - defining must be before to the main, then prototyping is not required 
+                                                                                             
+Link Section: references(libraries header files, macros)
+
+Definition Section: prototyping of functions(defining macros as well)
+
+Global Declaration: variables which can be globally accessable(maintain it with proper naming convention)
+ex: abcDef, abcdef, abc_def, aBCDEF
+
+Function Section: have its own address(hexadecimal)
+main()
+{
+    Declaration part
+    Executable part - makes an action (assigning, printing)
+}
+
+no return value according to standard ansi c
+
+- We can have multiple main() and multiple make files
+
+
+CONSTANTS, VARIABLES AND DATATYPES
+
+CHARACTER SET
+
+Letters
+Digits
+Special characters
+White spaces(blank space, tabs, carriage return, new line)
+
+C TOKENS
+
+Keywords - can start with _, upper or lower case (no $ can be used)
+Identifiers
+Constants
+Strings
+Special Symbols
+Operators
+
+int c = "2002" + 2
+int c = "2" + 2
+We cannot do as above
+int c = '2' + 2 (Gives addition of ASCII value of 2 with 2)
+
+Note: modulus cannot be used with float as it gives indefinite reminder
+      not of high is low, not of high is low
+
+int a = 10 or -1 (signed and unsigned integer)
+if(!a)
+{
+  p("H")
+}
+else
+{
+  p("N")
+}
+
+answer - N
+
+Question- How to create 2's table using bitwise operator
+
+Primary Datatypes -  char
+                     int
+			 float
+			 double
+
+User defined datatypes - structures
+				unions
+				enum
+
+Derieved datatypes - array
+			 function 
+			 pointer
+
+Modifiers -  signed
+		unsigned
+		long
+		short - reduces to standard ansi c
+
+Memory management unit needs to work on different machine, so it needs to be suitable for both the system - why modify
+
+int a = 10;
+int b = 20;
+int c = a++;
+
+++a;
+c++;
+B=++c;
+
+printf("\n %d %d %d", ++a,b++,++c);
+
+13 12 13
+
+
+int a = 10;
+int b = 20;
+int res = 0;
+
+res = (a>b)?100:101  ===>  101
+
+int a = 10;
+int b = 20;
+int c = 30;
+int res = 0;
+
+res = (exp1)?(exp2):(exp3);
+
+res = (a>b)?((a>c)?a:c):((b>c)?b:c)  - Nesting of operators
+
+
+Size of operator
+
+#include <stdio.h>
+
+int main()
+{
+
+	int a = 10;
+
+	printf("\n%d", sizeof(char));
+	printf("\n%d", sizeof(int));
+	printf("\n%d", sizeof(float));
+	printf("\n%d", sizeof(double));
+	printf("\n%d", sizeof(a));
+
+	return 0;
+}
+====> 1 4 4 8 4
+
+Why sizeof idealy a function looking like operator but categorized as a function -when a++ it should execute if its a function, it will not execute when it is an operator
+
+when a=10 if sizeof(a++) is given then the output will be 10 itself(no execution no changes)

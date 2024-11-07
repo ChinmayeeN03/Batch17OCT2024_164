@@ -1,0 +1,291 @@
+SWITCH CASE
+
+
+-case value must be numeric, ASCII or single character
+-condition need not be in order which has to be in else of ladder 
+ 
+Note gcc -g p1.c - even to debugg
+	gdb ./a.out
+
+Program exitted normally is the message after the process
+
+ /*
+  2 switch(cond)
+  3 {
+  4    case 1:
+  5          ---
+  6          break;
+  7    case 2:
+  8          ---
+  9          break;
+ 10    default:
+ 11          ---
+ 12          break;
+ 13 }
+ 14 */
+ 15 #include <stdio.h>
+ 16
+ 17 int main()
+ 18 {
+ 19
+ 20    char clrCode;
+ 21    clrCode = getc(stdin);
+ 22
+ 23    switch(clrCode)
+ 24    {
+ 25       case 'O':
+ 26          printf("\nOrange");
+ 27          break;
+ 28       case 'N':
+ 29          printf("\nBrown");
+ 30          break;
+ 31       case 'B':
+ 32          printf("\nBlack");
+ 33          break;
+ 34       default:
+ 35          printf("\nEnter the correct colour code\n");
+ 36          break;
+ 37    }
+ 38
+ 39 printf("\nProgram Ended\n");
+ 40 return 0;
+ 41 }
+
+
+---getchar can also be used instead of getc
+---switch can also be written as switch(clrCode = getc(stdin) or switch(getc(stdin))
+---if break is not put between the cases then it will print the next statement as well
+---no duplicates are allowed so gives compile time error as previously used here but it is possible in elseif ladder
+---if else can also be used within each cases
+
+
+
+
+LOOPING STATEMENTS
+
+do while
+-only this will have the semicolon after while
+
+
+
+ 1 /*
+  2 Loop:
+  3
+  4 1. Initialize variable
+  5 2. Condition check
+  6 3. statements to be executed
+  7 4. Counter
+  8
+  9 3 types:
+ 10
+ 11 1. do while
+ 12 2. while
+ 13 3. for
+ 14
+ 15 2 types of loop
+ 16
+ 17 1. entry controlled
+ 18 2. exit controlled
+ 19
+ 20 do{
+ 21    sts
+ 22 }while(cond);
+ 23 */
+ 24
+ 25 #include <stdio.h>
+ 26
+ 27 int main()
+ 28 {
+ 29    char taste = 'g';
+ 30    int emptyPlate = 3;
+ 31    int sFull = 0;
+ 32
+ 33    do
+ 34    {
+ 35       printf("\nHave a bite of food\n");
+ 36       emptyPlate--;
+ 37       printf("\nStomach Full (1/0): ");
+ 38       scanf("%d",&sFull);
+ 39       printf("\nHow was the taste (g/b): ");
+ 40       scanf(" ");
+ 41       taste = getchar();
+ 42       printf("\nEmpty Plate Value: %d", emptyPlate);
+ 43    }while((taste == 'g') && (sFull == 0) && (emptyPlate >= 0));
+ 44
+ 45
+ 46    printf("\nProgram ended\n");
+ 47    return 0;
+ 48 }
+    
+
+o/p
+
+user50@trainux01:~/day08$ ./a.out
+
+Have a bite of food
+
+Stomach Full (1/0): 0
+
+How was the taste (g/b): g
+
+Empty Plate Value: 2
+Have a bite of food
+
+Stomach Full (1/0): 0
+
+How was the taste (g/b): g
+
+Empty Plate Value: 1
+Have a bite of food
+
+Stomach Full (1/0): 0
+
+How was the taste (g/b): g
+
+Empty Plate Value: 0
+Have a bite of food
+
+Stomach Full (1/0): 0
+
+How was the taste (g/b): g
+
+Empty Plate Value: -1
+Program ended
+
+
+
+
+Question -- why there is a semicolon at the end of dowhile
+
+
+infinite looping in while :--- scanf has not worked properly, so error handling must be done to it...we need to check test case
+
+---success must be added ideally
+
+
+
+ 1 /*
+  2 while(cond1)
+  3 {
+  4    sts
+  5 }
+  6 */
+  7
+  8 #include <stdio.h>
+  9 #include <stdlib.h>
+ 10
+ 11 #define SUCCESS 0
+ 12 #define FAILURE -1
+ 13 #define True 1
+ 14 #define False 0
+ 15
+ 16
+ 17 int displayMenu();
+ 18
+ 19 int main()
+ 20 {
+ 21    int ch;
+ 22    int flag = 0;
+ 23    while(True){
+ 24       flag = 0;
+ 25       //ch = displayMenu();
+ 26
+ 27       switch(displayMenu())
+ 28       {
+ 29          case 1:
+ 30             printf("\nAddition function executed\n");
+ 31             break;
+ 32          case 2:
+ 33             printf("\nSub function executed\n");
+ 34             break;
+ 35          case 3:
+ 36             printf("\nMul function executed\n");
+ 37             break;
+ 38          case 4:
+ 39             printf("\nDivision function executed\n");
+ 40             break;
+ 41          case 5:
+ 42             printf("\nExiting from the Application\n");
+ 43             //exit(SUCCESS);
+ 44             flag = 1;
+ 45             break;
+ 46          default:
+ 47             printf("\nEnter the correct Choice\n");
+ 48
+ 49       }//end of switch
+ 50
+ 51       if(flag == 1)
+ 52          break;
+ 53
+ 54    }//end of while loop
+ 55
+ 56    printf("\nProgram Ended\n\n");
+ 57    return (SUCCESS);
+ 58 }
+ 59
+ 60 int displayMenu()
+ 61 {
+ 62    int choice;
+ 63
+ 64    printf("\nPress,");
+ 65    printf("\n1. Addition");
+ 66    printf("\n2. Sub");
+ 67    printf("\n3. Mul");
+ 68    printf("\n4. Division");
+ 69    printf("\n5. Exit");
+ 70    printf("\nChoice: ");
+ 71    scanf("%d",&choice);
+ 72
+ 73    return choice;
+    }
+
+
+
+
+for loop
+--we can initialize one or more variables using comma seperator that cannot be done in while loop
+--can have more than one counter
+--can even have more than one condition checking by combining using logical operators
+--everything we can know in single line
+--we can omit one or more sections- if initial section is omited then it must be replaced with semicolon
+   					 - if counter is omited then it can be included in the statements
+					 - if condition section is omited then for(;;) and can be written in statements
+
+then it executes infinite loop
+
+
+
+
+
+
+ 1 Q. Print series 0,3,8,15,24,35,48,63,80,99
+  2
+  3 Q2. Print series 1, 2, 4, 8, 16, 32, 64.
+  4
+  5 Q3. Find  the  sum  of  series  1+4-9+16-25+36
+  6
+  7 Q4. Print the star pattern
+  8 given input: n = 5
+  9 output:
+ 10 *
+ 11 **
+ 12 ***
+ 13 ****
+ 14 *****
+ 15
+ 16 Q5. Write the logic to for incrementing Squared Number-Star Pattern.
+ 17 Input Format      : Take N as input of type integer.
+ 18 Output Format     : Print incrementing Squared Number-Star Pattern.
+ 19
+ 20 Constraints:
+ 21 2<=N<=10
+ 22 Sample Input:
+ 23 5
+ 24 Sample Output:
+ 25 1*2*3*4*5
+ 26 6*7*8*9*10
+ 27 11*12*13*14*15
+ 28 16*17*18*19*20
+ 29 21*22*23*24*25
+~
+~
